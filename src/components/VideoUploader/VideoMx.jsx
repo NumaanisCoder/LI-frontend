@@ -40,12 +40,20 @@ const VideoUpload = () => {
         alert('Please select a file first!');
         return;
       }
-  
+    
+      // Validate file size before upload
+      if (file.size > 500 * 1024 * 1024) {
+        alert('File size exceeds 500MB limit!');
+        return;
+      }
+    
       const formData = new FormData();
       formData.append('video', file);
-  
+    
       try {
         setUploadStatus('Uploading...');
+        setProgress(0);
+        
         const response = await axios.post(`${process.env.REACT_APP_API_URL}/upload`, formData, {
           headers: {
             'Content-Type': 'multipart/form-data',
@@ -56,15 +64,32 @@ const VideoUpload = () => {
             );
             setProgress(percentCompleted);
           },
+          timeout: 600000 // 10 minute timeout for large files
         });
-  
+    
         setUploadStatus('Upload successful!');
         setVideoUrl(response.data.location);
         fetchVideos();
       } catch (error) {
         setUploadStatus('Upload failed!');
-        console.error('Upload error:', error);
-        alert(`Upload failed: ${error.response?.data?.error || error.message}`);
+        setProgress(0);
+        
+        let errorMessage = 'Upload failed';
+        if (error.response) {
+          // Server responded with error status
+          errorMessage += `: ${error.response.data?.error || error.response.statusText}`;
+          console.error('Server error:', error.response.data);
+        } else if (error.request) {
+          // Request was made but no response
+          errorMessage += ': No response from server';
+          console.error('No response:', error.request);
+        } else {
+          // Other errors
+          errorMessage += `: ${error.message}`;
+          console.error('Error:', error.message);
+        }
+        
+        alert(errorMessage);
       }
     };
   
