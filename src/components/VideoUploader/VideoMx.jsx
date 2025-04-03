@@ -18,11 +18,17 @@ const VideoUpload = () => {
     const fetchVideos = async () => {
       try {
         const response = await axios.get('https://li-backend.vercel.app/videos');
-        setVideos(response.data);
+        
+        // Filter out videos with size 0
+        const filteredVideos = response.data.filter(video => video.size > 0);
+    
+        console.log(filteredVideos);
+        setVideos(filteredVideos);
       } catch (error) {
         console.error('Error fetching videos:', error);
       }
     };
+    
   
     const handleFileChange = (e) => {
       setFile(e.target.files[0]);
@@ -39,7 +45,7 @@ const VideoUpload = () => {
   
       try {
         setUploadStatus('Uploading...');
-        const response = await axios.post('https://li-backend.vercel.app/upload', formData, {
+        const response = await axios.post('http://localhost:5000/upload', formData, {
           headers: {
             'Content-Type': 'multipart/form-data',
           },
@@ -90,7 +96,7 @@ const VideoUpload = () => {
         )}
   
         <div className={styles.videoGallery}>
-          <h3>All Uploaded Videos</h3>
+          <h3 style={{textAlign:'center'}}>All Uploaded Videos</h3>
           {videos.length > 0 ? (
             <div className={styles.videoGrid}>
               {videos.map((video, index) => (

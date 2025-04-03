@@ -33,8 +33,13 @@ border-radius: 20px;
     width: 100%;
 }
 .videoItem{
-    width: 120px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
 }
 .videoElement{
-    width: 200px;
+    width: 60%;
+    border-radius: 20px;
 }
