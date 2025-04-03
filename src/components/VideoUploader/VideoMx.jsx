@@ -10,6 +10,7 @@ const VideoUpload = () => {
     const [uploadStatus, setUploadStatus] = useState('');
     const [videoUrl, setVideoUrl] = useState('');
     const [videos, setVideos] = useState([]);
+    console.log(process.env.REACT_APP_API_URL)
   
     useEffect(() => {
       fetchVideos();
@@ -17,7 +18,7 @@ const VideoUpload = () => {
   
     const fetchVideos = async () => {
       try {
-        const response = await axios.get('https://li-backend.vercel.app/videos');
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/videos`);
         
         // Filter out videos with size 0
         const filteredVideos = response.data.filter(video => video.size > 0);
