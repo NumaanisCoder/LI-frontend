@@ -46,7 +46,7 @@ const VideoUpload = () => {
   
       try {
         setUploadStatus('Uploading...');
-        const response = await axios.post('https://li-backend.vercel.app/upload', formData, {
+        const response = await axios.post(`${process.env.REACT_APP_API_URL}/upload`, formData, {
           headers: {
             'Content-Type': 'multipart/form-data',
           },
