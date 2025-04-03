@@ -17,7 +17,7 @@ const VideoUpload = () => {
   
     const fetchVideos = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/videos');
+        const response = await axios.get('https://li-backend.vercel.app/videos');
         setVideos(response.data);
       } catch (error) {
         console.error('Error fetching videos:', error);
@@ -39,7 +39,7 @@ const VideoUpload = () => {
   
       try {
         setUploadStatus('Uploading...');
-        const response = await axios.post('http://localhost:5000/upload', formData, {
+        const response = await axios.post('https://li-backend.vercel.app/upload', formData, {
           headers: {
             'Content-Type': 'multipart/form-data',
           },

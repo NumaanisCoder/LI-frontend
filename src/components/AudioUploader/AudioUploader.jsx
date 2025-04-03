@@ -13,7 +13,7 @@ const AudioRecorder = () => {
 
   const mediaRecorderRef = useRef(null);
   const chunksRef = useRef([]);
-  const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || 'http://localhost:5000';
+  const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || 'https://li-backend.vercel.app';
 
   useEffect(() => {
     const fetchRecordings = async () => {
