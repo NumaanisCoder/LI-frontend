@@ -1,25 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import NavBar from './components/NavBar/NavBar';
+import VideoUpload from './components/VideoUploader/VideoMx';
+// import PdfUploader from './components/PdfUploader/PdfUploader';
+import AudioRecorder from './components/AudioUploader/AudioUploader';
 
-function App() {
+
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div>
+        <NavBar/>
+        <Routes>
+          <Route path="/" element={<VideoUpload/>} />
+          {/* <Route path="/pdfviewer" element={<PdfUploader />} /> */}
+          <Route path="/audio" element={<AudioRecorder />} />
+    
+        </Routes>
+      </div>
+    </Router>
   );
-}
+};
 
 export default App;
