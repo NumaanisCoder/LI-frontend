@@ -20,15 +20,17 @@ const VideoUpload = () => {
       try {
         const response = await axios.get(`${process.env.REACT_APP_API_URL}/videos`);
         
-        // Filter out videos with size 0
-        const filteredVideos = response.data.filter(video => video.size > 0);
+        // Filter out videos with size 0 and sort them by `lastModified` in descending order
+        const filteredVideos = response.data
+          .filter(video => video.size > 0)
+          .sort((a, b) => new Date(b.lastModified) - new Date(a.lastModified));
     
-        console.log(filteredVideos);
         setVideos(filteredVideos);
       } catch (error) {
         console.error('Error fetching videos:', error);
       }
     };
+   
     
   
     const handleFileChange = (e) => {
@@ -64,27 +66,28 @@ const VideoUpload = () => {
             );
             setProgress(percentCompleted);
           },
-          timeout: 600000 // 10 minute timeout for large files
+          timeout: 600000 // 10-minute timeout for large files
         });
     
         setUploadStatus('Upload successful!');
         setVideoUrl(response.data.location);
-        fetchVideos();
+    
+        // Refresh the page after a short delay
+        setTimeout(() => {
+          window.location.reload();
+        }, 1000);
       } catch (error) {
         setUploadStatus('Upload failed!');
         setProgress(0);
         
         let errorMessage = 'Upload failed';
         if (error.response) {
-          // Server responded with error status
           errorMessage += `: ${error.response.data?.error || error.response.statusText}`;
           console.error('Server error:', error.response.data);
         } else if (error.request) {
-          // Request was made but no response
           errorMessage += ': No response from server';
           console.error('No response:', error.request);
         } else {
-          // Other errors
           errorMessage += `: ${error.message}`;
           console.error('Error:', error.message);
         }
