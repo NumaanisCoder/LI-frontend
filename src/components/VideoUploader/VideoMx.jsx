@@ -135,8 +135,8 @@ const VideoUpload = () => {
                     <source src={video.url} type="video/mp4" />
                     Your browser does not support the video tag.
                   </video>
-                  <p>Uploaded: {new Date(video.lastModified).toLocaleString()}</p>
-                  <p>Size: {(video.size / (1024 * 1024)).toFixed(2)} MB</p>
+                  <p><b>Uploaded:</b> {new Date(video.lastModified).toLocaleString()}</p>
+                  <p><b>Size:</b> {(video.size / (1024 * 1024)).toFixed(2)} MB</p>
                 </div>
               ))}
             </div>

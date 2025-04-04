@@ -43,3 +43,10 @@ border-radius: 20px;
     width: 60%;
     border-radius: 20px;
 }
+
+@media (max-width: 720px) {
+    .videoElement{
+        width: 90%;
+        border-radius: 10px;
+    }
+}
