@@ -140,7 +140,7 @@ const VideoUpload = () => {
         <div className={styles.videoUploadContainer}>
             <div className={styles.videouploaderSection}>
                 <h2><FiVideo /> Video Upload</h2>
-                <p className={styles.subtitle}>Upload videos to AWS S3 (Max 500MB)</p>
+                <p className={styles.subtitle}>Upload videos (Max 500MB)</p>
                 
                 <div 
                     className={`${styles.uploadArea} ${dragActive ? styles.dragActive : ''}`}
