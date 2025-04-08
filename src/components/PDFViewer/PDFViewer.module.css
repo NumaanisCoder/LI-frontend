@@ -1,0 +1,218 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.title {
+    color: #2c3e50;
+    margin-bottom: 8px;
+    font-size: 2rem;
+}
+
+.subtitle {
+    color: #7f8c8d;
+    margin: 0;
+    font-size: 1rem;
+}
+
+.uploadArea {
+    border: 2px dashed #bdc3c7;
+    border-radius: 12px;
+    padding: 40px 20px;
+    text-align: center;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    background-color: #f8f9fa;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 600px;
+}
+
+.dragActive {
+    border-color: #3498db;
+    background-color: rgba(52, 152, 219, 0.05);
+}
+
+.fileInput {
+    display: none;
+}
+
+.uploadContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.uploadIcon {
+    font-size: 48px;
+    color: #3498db;
+    margin-bottom: 10px;
+}
+
+.uploadText {
+    color: #7f8c8d;
+    margin: 0;
+    font-size: 1.1rem;
+}
+
+.browseButton {
+    padding: 12px 24px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    font-size: 1rem;
+}
+
+.browseButton:hover {
+    background-color: #2980b9;
+}
+
+.fileTypes {
+    color: #95a5a6;
+    font-size: 0.9rem;
+    margin: 10px 0 0;
+}
+
+.pdfContainer {
+    width: 100%;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.pdfHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background-color: #2c3e50;
+    color: white;
+}
+
+.fileInfo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    overflow: hidden;
+}
+
+.fileIcon {
+    flex-shrink: 0;
+}
+
+.fileName {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.clearButton {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-size: 1.2rem;
+    padding: 5px;
+    border-radius: 50%;
+    transition: background-color 0.2s;
+}
+
+.clearButton:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.pdfViewerWrapper {
+    width: 100%;
+    height: 70vh;
+    min-height: 500px;
+    background-color: #525659;
+    position: relative;
+}
+
+.errorMessage {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 15px;
+    background-color: #fdecea;
+    color: #d32f2f;
+    border-radius: 6px;
+    margin-top: 20px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.errorIcon {
+    font-size: 1.2rem;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+    
+    .title {
+        font-size: 1.5rem;
+    }
+    
+    .subtitle {
+        font-size: 0.9rem;
+    }
+    
+    .uploadArea {
+        padding: 30px 15px;
+    }
+    
+    .uploadIcon {
+        font-size: 36px;
+    }
+    
+    .uploadText {
+        font-size: 1rem;
+    }
+    
+    .pdfViewerWrapper {
+        height: 60vh;
+        min-height: 400px;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 10px;
+    }
+    
+    .title {
+        font-size: 1.3rem;
+    }
+    
+    .pdfHeader {
+        padding: 10px 15px;
+    }
+    
+    .fileName {
+        font-size: 0.9rem;
+    }
+    
+    .pdfViewerWrapper {
+        height: 50vh;
+        min-height: 300px;
+    }
+}
